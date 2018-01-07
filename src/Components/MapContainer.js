@@ -2,6 +2,7 @@ import React from "react";
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGoogleMap from "react-google-map";
 import Autocomplete from 'react-google-autocomplete';
+import MenuComponent from './MenuComponent';
 
 
  
@@ -14,6 +15,7 @@ const mapContainer = () =>
     render={googleMaps =>
         googleMaps && (
          <div className = "mapStyle">
+      <Autocomplete/>
             <ReactGoogleMap 
                   googleMaps={googleMaps}
                   center={{lat: 43.604363, lng: 1.443363}}
