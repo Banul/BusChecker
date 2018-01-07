@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .bm-burger-button {
@@ -64,4 +65,8 @@
 
 .inputStyle{
   margin-bottom: 10px;
+}
+
+.mapStyle{
+  height: 100%;
 }

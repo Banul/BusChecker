@@ -13,13 +13,7 @@ const mapContainer = () =>
     }}
     render={googleMaps =>
         googleMaps && (
-         <div className = "mapStyle">
-            <ReactGoogleMap 
-                  googleMaps={googleMaps}
-                  center={{lat: 43.604363, lng: 1.443363}}
-                  zoom={8}
-                />
-         </div>
+           <Autocomplete/>
         )}
     />
 
