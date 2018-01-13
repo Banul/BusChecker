@@ -14,16 +14,11 @@ class MainComponent extends Component{
         }
 
     onButtonAddClick = () => {
-        console.log(this.state.inputValue.length);
-        if (this.state.inputValue.length <= 3 && this.state.inputValue.match("^[0-9]*$") ){
+        if (this.state.inputValue.length <= 3 && this.state.inputValue.match("^[0-9]*$") && !this.state.buses.includes(this.state.inputValue) ){
             this.setState({
                 buses :  [...this.state.buses, this.state.inputValue]
             }
         )
-            
-        console.log(this.state.inputValue);
-            console.log("chuj!");
-            console.log(this.state.buses);
         }
        }
 
