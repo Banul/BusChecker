@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import MapContainer from './MapContainer';
+import vehicleLocationReturner from './VehicleLocationReturner';
 
 class MainComponent extends Component{
 
@@ -40,6 +41,12 @@ class MainComponent extends Component{
         
     }
 
+    // pobierz dane 
+    getData = () => {
+        console.log("getData!");
+      const k = vehicleLocationReturner(this.state.buses);
+      console.log(k);
+    }
 
     onInputChange = (event) => {
         this.setState({inputValue : event.target.value});
@@ -52,6 +59,7 @@ class MainComponent extends Component{
             height: '100%'
         };
 
+        this.getData();
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}

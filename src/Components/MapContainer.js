@@ -23,7 +23,7 @@ const mapContainer = (props) =>
                   googleMaps={googleMaps}
                   center={{lat: 43.604363, lng: 1.443363}}
                   zoom={8}
-                />
+            />
             <div/>
          </div>
          <div className = "panel">
