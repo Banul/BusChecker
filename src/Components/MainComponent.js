@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import MapContainer from './MapContainer';
-import ValidationComponent from './ValidationComponent';
 
 class MainComponent extends Component{
 
@@ -11,16 +10,25 @@ class MainComponent extends Component{
            buses : [],
            busesData : [],
            inputValue : '',
+           focusVehicle: false
         }
 
     onButtonAddClick = () => {
-        if (this.state.inputValue.length <= 3 && this.state.inputValue.match("^[0-9]*$") && !this.state.buses.includes(this.state.inputValue) ){
+        if (this.state.inputValue.length <= 3 && this.state.inputValue.match("^[0-9]*$") &&
+             !this.state.buses.includes(this.state.inputValue) && this.state.inputValue !== '' ){
             this.setState({
                 buses :  [...this.state.buses, this.state.inputValue]
             }
         )
         }
        }
+
+    onFocusVeh = () => {
+        this.setState({
+            focusVehicle : true
+        })
+    }
+
 
     onInputChange = (event) => {
         this.setState({inputValue : event.target.value});
@@ -33,11 +41,15 @@ class MainComponent extends Component{
             height: '100%'
         };
 
+        console.log("focus");
+        console.log(this.state.focusVehicle);
 
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
-              inputValue = {this.state.inputValue} vehicles = {this.state.buses}/>
+              inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
+              focusState = {this.state.focusVehicle}
+              />
             </div>
         )
 

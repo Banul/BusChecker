@@ -3,7 +3,7 @@ import React from 'react';
 const Vehicle = (props) => {
 
     return (
-        <div>
+        <div className = "card">
             {props.number}
         </div>
     )

@@ -35,11 +35,11 @@ const mapContainer = (props) =>
             />
          <button type="button" className="btn btn-success buton col-md-4">Zmień miejsce</button> 
               <p> Podaj numer autobusu/tramwaju</p>
-            <input onChange = {props.inputHandler} className = "col-md-4"/>
+            <input onChange = {props.inputHandler} className = "col-md-4"
+            onFocus = {props.focusVeh}/>
             <p></p>
               <button type="button" className="btn btn-success buton col-md-4" onClick = {props.buttonAddClickHandler}>Dodaj</button> 
-             <button type="button" className="btn btn-danger buton col-md-4">Usuń</button>  
-             <ValidationComponent inputValue = {props.inputValue}/>
+             <ValidationComponent inputValue = {props.inputValue} focusState = {props.focusState}/>
              <Vehicles vehicles = {props.vehicles}/>
          </div>
          </div>

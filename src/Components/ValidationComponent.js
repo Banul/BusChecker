@@ -5,7 +5,7 @@ const ValidationComponent = (props) => {
     const inputValueLower = props.inputValue.toLowerCase();
 
     let info = null
-    if (inputLen > 3 || !inputValueLower.match(/^[0-9]+$/)){
+    if ((inputLen > 3 || !inputValueLower.match(/^[0-9]+$/)) && props.focusState === true && inputLen !== 0){
         info = "Wpisana zła wartość."
     }
 
