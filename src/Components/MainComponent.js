@@ -30,10 +30,13 @@ class MainComponent extends Component{
     }
 
     handleDeleteItem = (num) => {
-        console.log(num);
-        const indexToDelete = this.state.buses.indexOf(vehicleNumber);
-        const newBuses = this.state.buses.splice(indexToDelete);
-        
+        const indexToDelete = this.state.buses.indexOf(num);
+        let vehicles = this.state.buses;
+        vehicles.splice(indexToDelete, 1);
+
+        this.setState({
+            buses : vehicles
+        })
         
     }
 
