@@ -29,6 +29,13 @@ class MainComponent extends Component{
         })
     }
 
+    handleDeleteItem = () => {
+        console.log("dupa");
+        // const indexToDelete = this.state.buses.indexOf(vehicleNumber);
+        // const newBuses = this.state.buses.splice(indexToDelete);
+        
+    }
+
 
     onInputChange = (event) => {
         this.setState({inputValue : event.target.value});
@@ -41,14 +48,11 @@ class MainComponent extends Component{
             height: '100%'
         };
 
-        console.log("focus");
-        console.log(this.state.focusVehicle);
-
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
               inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
-              focusState = {this.state.focusVehicle}
+              focusState = {this.state.focusVehicle} cickedListElement = {this.handleDeleteItem}
               />
             </div>
         )

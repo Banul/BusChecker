@@ -40,7 +40,7 @@ const mapContainer = (props) =>
             <p></p>
               <button type="button" className="btn btn-success buton col-md-4" onClick = {props.buttonAddClickHandler}>Dodaj</button> 
              <ValidationComponent inputValue = {props.inputValue} focusState = {props.focusState}/>
-             <Vehicles vehicles = {props.vehicles}/>
+             <Vehicles vehicles = {props.vehicles} itemClicked = {props.cickedListElement}/>
          </div>
          </div>
         )}
