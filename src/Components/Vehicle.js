@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Vehicle = (props) => {
-    console.log("props");
-        console.log(props);
+   
+    const number = props.number;
 
     return (
-        <div className = "card" onClick = {props.vehicleItemClicked}>
-              {props.number}
+        <div className = "card" onClick = {() => props.vehicleItemClicked(number) }>
+            {number}       
         </div>
     )
 }
