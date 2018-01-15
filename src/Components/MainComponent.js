@@ -93,11 +93,21 @@ class MainComponent extends Component{
          if (this.state.currentIntervalId !== ''){
                 clearInterval(this.state.intervalId);
         }
-        this.vehicleLocationReturner(this.state.buses);
+        console.log("handledelete");
+        console.log(this.state.buses);
+        if(this.state.buses.length !== 0){
         let newIntervalId = setInterval(() => this.vehicleLocationReturner(this.state.buses), 5000);
         this.setState({
             intervalId : newIntervalId
         })
+        }
+
+        if (this.state.buses.length === 0){
+            this.setState({
+                intervalId : ''
+            })
+       
+        }
     
 
         
