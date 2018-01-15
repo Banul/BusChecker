@@ -21,44 +21,7 @@ const mapContainer = (props) =>
             <div className = "container">
          <div className = "map" >
             <ReactGoogleMap 
-             googleMaps={googleMaps}
-      // You can add and remove coordinates on the fly.
-      // The map will rerender new markers and remove the old ones.
-      coordinates={[
-        {
-          title: "Toulouse",
-          position: {
-            lat: 52.302389,
-            lng: 21.041596
-          },
-          onLoaded: (googleMaps, map, marker) => {
-
-                const infoWindow = new googleMaps.InfoWindow({
-              content: `
-                <div>
-                  132
-                </div>
-              `,
-            })
-            infoWindow.open(map, marker)
-
-           }
-        
-      }, 
-      {
-         title: "Toulouse",
-          position: {
-            lat: 51.302389,
-            lng: 21.041596
-          },
-           onLoaded: (googleMaps, map, marker) => {
-
-           }
-      }
-      ]
-    }
-      
-      
+             googleMaps={googleMaps}    
       
       center={{lat: 52.604363, lng:21.443363}}
       zoom={8}
@@ -92,16 +55,35 @@ const mapContainer = (props) =>
 
 export default mapContainer;
 
-//  googleMaps={googleMaps}
-//                   center={{lat: 43.604363, lng: 1.443363}}
-//                   zoom={8}
+//    coordinates={[
+//         {
+//           title: "Toulouse",
+//           position: {
+//             lat: 52.302389,
+//             lng: 21.041596
+//           },
+//           onLoaded: (googleMaps, map, marker) => {
 
+//                 const infoWindow = new googleMaps.InfoWindow({
+//               content: `
+//                 <div>
+//                   132
+//                 </div>
+//               `,
+//             })
+//             infoWindow.open(map, marker)
 
-//  coordinates = {[
-//                  {
-//             title: "Toulouse",
-//             position: {
-//             lat: 43.604363,
-//             lng: 1.443363,
-//             }
-//              }]}
+//            } 
+//       }, 
+//       {
+//          title: "Toulouse",
+//           position: {
+//             lat: 51.302389,
+//             lng: 21.041596
+//           },
+//            onLoaded: (googleMaps, map, marker) => {
+
+//            }
+//       }
+//       ]
+//     }

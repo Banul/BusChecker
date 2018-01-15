@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
 import MapContainer from './MapContainer';
+import busDataParser from './BusDataParser';
 
 class MainComponent extends Component{
 
@@ -21,6 +21,8 @@ class MainComponent extends Component{
     componentWillUnmount() {
         console.log("WILL UNMOUNT!");
     }
+
+
     
  
 
@@ -35,17 +37,26 @@ class MainComponent extends Component{
       vehicleLocationReturner(props) {
       let resolved = new Array();
       const URL = "https://cors-anywhere.herokuapp.com/http://api.um.warszawa.pl/api/action/busestrams_get/?resource_id=%20f2e5503e-%20927d-4ad3-9500-4ab9e55deb59&apikey=0f3b3264-6613-4b0b-9f88-c7f84f770563&type=1&line="
-      console.log("propsy");
-      console.log(this.state.busesData)
+      let finalResult = '';
 
       let readableStream =  props.map(vehicleNumber => fetch(`${URL}${vehicleNumber}`).then(results => {
             let result = results.json();
-            resolved.push(result);
+            result.then(res => {
+                 finalResult = res;
+                 resolved.push(res)
+                 this.setState({
+                     busesData : resolved
+                 })
+            })
         }
         ));
-        this.setState({
-            busesData : resolved
-        })
+
+
+        if (this.state.busesData.length !== 0){
+        busDataParser(this.state.busesData);
+        }
+        
+
     }
 
     onButtonAddClick = () => {
@@ -57,9 +68,8 @@ class MainComponent extends Component{
                 clearInterval(this.state.intervalId);
             }
             const newBuses = [...this.state.buses, this.state.inputValue]
+            this.vehicleLocationReturner(newBuses);
             let newIntervalId = setInterval(() => this.vehicleLocationReturner(this.state.buses), 5000);
-            console.log("busesData");
-            console.log(this.state.busesData);
 
             this.setState({
                 buses :  newBuses,
