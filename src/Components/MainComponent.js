@@ -22,6 +22,7 @@ class MainComponent extends Component{
             }
         )
         }
+
        }
 
     onFocusVeh = () => {
@@ -45,6 +46,7 @@ class MainComponent extends Component{
     getData = () => {
         this.onButtonAddClick();
         console.log("getData!");
+        console.log(this.state.buses);
       const k = vehicleLocationReturner(this.state.buses);
       console.log(k);
     }
