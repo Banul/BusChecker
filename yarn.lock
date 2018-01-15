@@ -1590,6 +1590,10 @@ commander@2.12.x, commander@~2.12.1:
   version "2.12.2"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
+"commander@>= 0.6.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
+
 commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
@@ -4555,9 +4559,20 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+"marked@>= 0.2.4-1":
+  version "0.3.12"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.12.tgz#7cf25ff2252632f3fe2406bde258e94eee927519"
+
 marker-clusterer-plus@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/marker-clusterer-plus/-/marker-clusterer-plus-2.1.4.tgz#f8eff74d599dab3b7d0e3fed5264ea0e704f5d67"
+
+marker@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/marker/-/marker-0.1.2.tgz#09bbe35ad05e6a9284035a8fc833d49ac7aa916d"
+  dependencies:
+    commander ">= 0.6.0"
+    marked ">= 0.2.4-1"
 
 markerwithlabel@^2.0.1:
   version "2.0.1"

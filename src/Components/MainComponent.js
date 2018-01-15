@@ -103,14 +103,13 @@ class MainComponent extends Component{
         const style = {
             height: '100%'
         };
-        // console.log("RENDER!");
 
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
               inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
               focusState = {this.state.focusVehicle} cickedListElement = {(num) => this.handleDeleteItem(num)}
-              getData = {this.getData}
+              getData = {this.getData} mapToShowOnMap = {this.state.busesData}
               />
             </div>
         )
