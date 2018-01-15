@@ -22,10 +22,6 @@ class MainComponent extends Component{
         console.log("WILL UNMOUNT!");
     }
 
-
-    
- 
-
       state = {
            buses : [],
            busesData : [],
@@ -63,8 +59,7 @@ class MainComponent extends Component{
     
         if (this.state.inputValue.length <= 3 && this.state.inputValue.match("^[0-9]*$") &&
              !this.state.buses.includes(this.state.inputValue) && this.state.inputValue !== '' ){   
-            let currentIntervalId = this.state.intervalId;
-            if (currentIntervalId !== ''){
+            if (this.state.currentIntervalId !== ''){
                 clearInterval(this.state.intervalId);
             }
             const newBuses = [...this.state.buses, this.state.inputValue]
@@ -95,6 +90,16 @@ class MainComponent extends Component{
         this.setState({
             buses : vehicles
         })
+         if (this.state.currentIntervalId !== ''){
+                clearInterval(this.state.intervalId);
+        }
+        this.vehicleLocationReturner(this.state.buses);
+        let newIntervalId = setInterval(() => this.vehicleLocationReturner(this.state.buses), 5000);
+        this.setState({
+            intervalId : newIntervalId
+        })
+    
+
         
     }
 
