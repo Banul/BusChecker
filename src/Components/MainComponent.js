@@ -43,6 +43,7 @@ class MainComponent extends Component{
 
     // pobierz dane 
     getData = () => {
+        this.onButtonAddClick();
         console.log("getData!");
       const k = vehicleLocationReturner(this.state.buses);
       console.log(k);
@@ -59,12 +60,12 @@ class MainComponent extends Component{
             height: '100%'
         };
 
-        this.getData();
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
               inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
               focusState = {this.state.focusVehicle} cickedListElement = {(num) => this.handleDeleteItem(num)}
+              getData = {this.getData}
               />
             </div>
         )

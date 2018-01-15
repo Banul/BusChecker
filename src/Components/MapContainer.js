@@ -38,7 +38,7 @@ const mapContainer = (props) =>
             <input onChange = {props.inputHandler} className = "col-md-4"
             onFocus = {props.focusVeh}/>
             <p></p>
-              <button type="button" className="btn btn-success buton col-md-4" onClick = {props.buttonAddClickHandler}>Dodaj</button> 
+              <button type="button" className="btn btn-success buton col-md-4" onClick = { props.getData }>Dodaj</button> 
              <ValidationComponent inputValue = {props.inputValue} focusState = {props.focusState}/>
              <Vehicles vehicles = {props.vehicles} itemClicked = {props.cickedListElement}/>
          </div>
