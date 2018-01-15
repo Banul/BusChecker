@@ -30,7 +30,19 @@ const mapContainer = (props) =>
           position: {
             lat: 52.302389,
             lng: 21.041596
-          }
+          },
+          onLoaded: (googleMaps, map, marker) => {
+
+                const infoWindow = new googleMaps.InfoWindow({
+              content: `
+                <div>
+                  132
+                </div>
+              `,
+            })
+            infoWindow.open(map, marker)
+
+           }
         
       }, 
       {
@@ -38,10 +50,15 @@ const mapContainer = (props) =>
           position: {
             lat: 51.302389,
             lng: 21.041596
-          }
-      }]
-      
+          },
+           onLoaded: (googleMaps, map, marker) => {
+
+           }
       }
+      ]
+    }
+      
+      
       
       center={{lat: 52.604363, lng:21.443363}}
       zoom={8}
