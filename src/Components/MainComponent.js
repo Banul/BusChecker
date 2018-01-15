@@ -1,27 +1,73 @@
 import React, { Component } from 'react';
 
 import MapContainer from './MapContainer';
-import vehicleLocationReturner from './VehicleLocationReturner';
 
 class MainComponent extends Component{
 
     // w buses będą numery obiektów dla których pobierać dane
     // w buses data będą obiekty {numerLini, Lat, Lng}
+    
+    componentDidMount(){
+      console.log("DID MOUNT!!!!");
+   
+
+    }
+
+    componentDidUpdate( nextProps, nextState ){
+      console.log('[App.js - UPDATE] ComponentDidUpdate');
+   
+    }
+
+    componentWillUnmount() {
+        console.log("WILL UNMOUNT!");
+    }
+    
+ 
+
       state = {
            buses : [],
            busesData : [],
            inputValue : '',
-           focusVehicle: false
+           focusVehicle: false,
+           intervalId : ''
         }
 
+      vehicleLocationReturner(props) {
+      let resolved = new Array();
+      const URL = "https://cors-anywhere.herokuapp.com/http://api.um.warszawa.pl/api/action/busestrams_get/?resource_id=%20f2e5503e-%20927d-4ad3-9500-4ab9e55deb59&apikey=0f3b3264-6613-4b0b-9f88-c7f84f770563&type=1&line="
+      console.log("propsy");
+      console.log(this.state.busesData)
+
+      let readableStream =  props.map(vehicleNumber => fetch(`${URL}${vehicleNumber}`).then(results => {
+            let result = results.json();
+            resolved.push(result);
+        }
+        ));
+        this.setState({
+            busesData : resolved
+        })
+    }
+
     onButtonAddClick = () => {
+    
         if (this.state.inputValue.length <= 3 && this.state.inputValue.match("^[0-9]*$") &&
-             !this.state.buses.includes(this.state.inputValue) && this.state.inputValue !== '' ){
+             !this.state.buses.includes(this.state.inputValue) && this.state.inputValue !== '' ){   
+            let currentIntervalId = this.state.intervalId;
+            if (currentIntervalId !== ''){
+                clearInterval(this.state.intervalId);
+            }
+            const newBuses = [...this.state.buses, this.state.inputValue]
+            let newIntervalId = setInterval(() => this.vehicleLocationReturner(this.state.buses), 5000);
+            console.log("busesData");
+            console.log(this.state.busesData);
+
             this.setState({
-                buses :  [...this.state.buses, this.state.inputValue]
+                buses :  newBuses,
+                intervalId : newIntervalId
             }
         )
         }
+        
 
        }
 
@@ -45,10 +91,6 @@ class MainComponent extends Component{
     // pobierz dane 
     getData = () => {
         this.onButtonAddClick();
-        console.log("getData!");
-        console.log(this.state.buses);
-      const k = vehicleLocationReturner(this.state.buses);
-      console.log(k);
     }
 
     onInputChange = (event) => {
@@ -61,6 +103,7 @@ class MainComponent extends Component{
         const style = {
             height: '100%'
         };
+        // console.log("RENDER!");
 
         return(
             <div style = {style} >
