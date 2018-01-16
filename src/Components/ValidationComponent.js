@@ -1,6 +1,8 @@
 import React from 'react';
 
 const ValidationComponent = (props) => {
+    console.log("chuj");
+    console.log(props.dupa);
     const inputLen = props.inputValue.length;
     const inputValueLower = props.inputValue.toLowerCase();
 

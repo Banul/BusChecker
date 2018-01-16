@@ -23,6 +23,7 @@ const mapCoordinatesParse = (props) => {
                 content:`<div>${item.number}</div>`,
             })
             infoWindow.open(map,marker)
+            
         }
       }
 

@@ -2,36 +2,28 @@ import React, { Component } from 'react';
 import MapContainer from './MapContainer';
 import busDataParser from './BusDataParser';
 import mapCoordinatesParse from './mapCoordinatesParse';
+import { geocodeByAddress, getLatLng  } from 'react-places-autocomplete';
+
 
 class MainComponent extends Component{
-
-    // w buses będą numery obiektów dla których pobierać dane
-    // w buses data będą obiekty {numerLini, Lat, Lng}
-    
-    // componentDidMount(){
-    //   console.log("DID MOUNT!!!!");
-   
-
-    // }
-
-    // componentDidUpdate( nextProps, nextState ){
-    //   console.log('[App.js - UPDATE] ComponentDidUpdate');
-   
-    // }
-
-    // componentWillUnmount() {
-    //     console.log("WILL UNMOUNT!");
-    // }
 
       state = {
            buses : [],
            busesData : [],
            inputValue : '',
+           inputGeocodeValue : '',
            focusVehicle: false,
            intervalId : '',
            parsedData : undefined,
-           checkedArray :[]
+           checkedArray :[],
+           latLngToChangeLocation: {lat:52.229676, lng:21.012229},
+           latLngNew:{}
 
+      }
+
+      componentDidMount(){
+          console.log("didMount");
+          console.log(this.state.latLngToChangeLocation);
       }
 
       vehicleLocationReturner(props) {
@@ -63,6 +55,7 @@ class MainComponent extends Component{
         }
         
     }
+
 
 
     getCheckedItems = (vehicleNumber) => {
@@ -122,8 +115,7 @@ class MainComponent extends Component{
          if (this.state.currentIntervalId !== ''){
                 clearInterval(this.state.intervalId);
         }
-        console.log("onDeleteHandle");
-        console.log(this.state.buses);
+
         if(this.state.buses.length !== 0){
         let newIntervalId = setInterval(() => this.vehicleLocationReturner(this.state.buses), 5000);
         this.setState({
@@ -159,6 +151,24 @@ class MainComponent extends Component{
         this.setState({inputValue : event.target.value});
     }
 
+    onInputGeocodeChange = (event) => {
+        this.setState({inputGeocodeValue : event.target.value});
+
+    }
+
+    geocode = () => {
+    geocodeByAddress(this.state.inputGeocodeValue)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+          this.setState({
+              latLngNew: latLng
+          })
+            console.log("state")
+            console.log(this.state.latLngToChangeLocation)
+      })
+      .catch(error => console.error('Error', error))
+  }
+
         
     render()
     {
@@ -170,10 +180,12 @@ class MainComponent extends Component{
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
+              inputGeocodeHandler = {this.onInputGeocodeChange}
               inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
               focusState = {this.state.focusVehicle} clickedListElement = {(num) => this.handleDeleteItem(num)}
               getData = {this.getData} mapToShowOnMap = {this.state.busesData} parsedData = {this.state.parsedData}
-              checked = {(num) => this.getCheckedItems(num)}
+              checked = {(num) => this.getCheckedItems(num)} geocode = {() => this.geocode()}
+              shownLocation = {this.state.latLngToChangeLocation}
               />
             </div>
         )
