@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapContainer from './MapContainer';
 import busDataParser from './BusDataParser';
+import mapCoordinatesParse from './mapCoordinatesParse';
 
 class MainComponent extends Component{
 
@@ -49,11 +50,14 @@ class MainComponent extends Component{
 
 
         if (this.state.busesData.length !== 0){
-        busDataParser(this.state.busesData);
+        const parsedData = busDataParser(this.state.busesData);
+        console.log(parsedData)
+        
         }
         
-
     }
+
+
 
     onButtonAddClick = () => {
     
