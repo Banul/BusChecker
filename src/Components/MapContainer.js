@@ -9,19 +9,21 @@ import iconMarker from '../images/location-pointer.svg';
 
  
 const mapContainer = (props) =>
-  <ReactGoogleMapLoader className = "mapStyle"
+<ReactGoogleMapLoader className = "mapStyle"
     params={{ 
         key: 'AIzaSyCq-GMlFPxSi4Hlw6-8pttvoPb8WFLoON4', // Define your api key here
         libraries: "places, geometry", // To request multiple libraries, separate them with a comma
     }}
 
+    
 
     render={googleMaps =>
         googleMaps && (
             <div className = "container">
          <div className = "map" >
             <ReactGoogleMap 
-             googleMaps={googleMaps}    
+             googleMaps={googleMaps}  
+             coordinates = {props.parsedData}
       
       center={{lat: 52.604363, lng:21.443363}}
       zoom={8}

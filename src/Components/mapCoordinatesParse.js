@@ -6,7 +6,7 @@ const mapCoordinatesParse = (props) => {
 
     props.map (item =>{
    let parsedItem = {
-        title: item.Lines,
+        title: item.number,
         position: {
             lat: item.latitude,
             lng: item.longitude

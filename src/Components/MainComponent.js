@@ -8,28 +8,48 @@ class MainComponent extends Component{
     // w buses będą numery obiektów dla których pobierać dane
     // w buses data będą obiekty {numerLini, Lat, Lng}
     
-    componentDidMount(){
-      console.log("DID MOUNT!!!!");
+    // componentDidMount(){
+    //   console.log("DID MOUNT!!!!");
    
 
-    }
+    // }
 
-    componentDidUpdate( nextProps, nextState ){
-      console.log('[App.js - UPDATE] ComponentDidUpdate');
+    // componentDidUpdate( nextProps, nextState ){
+    //   console.log('[App.js - UPDATE] ComponentDidUpdate');
    
-    }
+    // }
 
-    componentWillUnmount() {
-        console.log("WILL UNMOUNT!");
-    }
+    // componentWillUnmount() {
+    //     console.log("WILL UNMOUNT!");
+    // }
 
       state = {
            buses : [],
            busesData : [],
            inputValue : '',
            focusVehicle: false,
-           intervalId : ''
-        }
+           intervalId : '',
+           parsedData : '',
+           testData : [{
+           title: "Toulouse",
+           position: {
+             lat: 52.302389,
+             lng: 21.041596
+           },
+           onLoaded: (googleMaps, map, marker) => {
+
+                 const infoWindow = new googleMaps.InfoWindow({
+               content: `
+                 <div>
+                   132
+                 </div>
+               `,
+             })
+             infoWindow.open(map, marker)
+
+            } 
+        }]
+      }
 
       vehicleLocationReturner(props) {
       let resolved = new Array();
@@ -51,7 +71,12 @@ class MainComponent extends Component{
 
         if (this.state.busesData.length !== 0){
         const parsedData = busDataParser(this.state.busesData);
-        console.log(parsedData)
+         console.log(parsedData)
+        
+        this.setState({
+            parsedData : parsedData
+        })
+
         
         }
         
@@ -138,7 +163,7 @@ class MainComponent extends Component{
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
               inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
               focusState = {this.state.focusVehicle} cickedListElement = {(num) => this.handleDeleteItem(num)}
-              getData = {this.getData} mapToShowOnMap = {this.state.busesData}
+              getData = {this.getData} mapToShowOnMap = {this.state.busesData} parsedData = {this.state.testData}
               />
             </div>
         )
