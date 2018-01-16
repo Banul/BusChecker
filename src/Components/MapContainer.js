@@ -16,7 +16,6 @@ const mapContainer = (props) =>
         libraries: "places, geometry", // To request multiple libraries, separate them with a comma
     }}
 
-    
 
     render={googleMaps =>
         googleMaps && (
@@ -27,35 +26,26 @@ const mapContainer = (props) =>
              googleMaps={googleMaps}  
              coordinates = {props.parsedData}
              
+             
       
       
       Center={{lat:parseFloat(props.shownLocation.lat), lng:parseFloat(props.shownLocation.lng)}} 
       zoom={12}
 
       onLoaded={(googleMaps, map) => {
-          
         map.setMapTypeId(googleMaps.MapTypeId.TERRAIN)
 
-         googleMaps.event.addListener(map, "mousemove", () => {
-             map.setCenter({lat:(21), lng:(44)});
-            })
       }}
 
+     
+      
     
     />
 
  <div/>
          </div>
          <div className = "panel">
-             <p>Wybierz miejsce</p>
-             <Autocomplete className = "inputStyle col-md-4" 
-                 componentRestrictions={{country: "pl"}} 
-                 types={['geocode']}
-                 onChange = {props.inputGeocodeHandler}
-        
-            />
-         <button type="button" className="btn btn-success buton col-md-4" onClick = {props.geocode} >Zmień miejsce</button> 
-              <p> Podaj numer autobusu/tramwaju</p>
+              <p className = "paragraph"> <b> Podaj numer autobusu/tramwaju</b> </p>
             <input onChange = {props.inputHandler} className = "col-md-4"
             onFocus = {props.focusVeh}/>
             <p></p>

@@ -163,8 +163,6 @@ class MainComponent extends Component{
           this.setState({
               latLngNew: latLng
           })
-            console.log("state")
-            console.log(this.state.latLngToChangeLocation)
       })
       .catch(error => console.error('Error', error))
   }
@@ -176,7 +174,7 @@ class MainComponent extends Component{
             height: '100%'
         };
     
-
+    
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
@@ -194,3 +192,7 @@ class MainComponent extends Component{
 }
 
 export default MainComponent;
+
+      //  map.setCenter({lat:props.shownLocation.lat, lng:props.shownLocation.lng})
+
+    //    map.setCenter({lat:(props.shownLocation.lat), lng:parseFloat(props.shownLocation.lng)})
