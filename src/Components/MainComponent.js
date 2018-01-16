@@ -29,12 +29,13 @@ class MainComponent extends Component{
            inputValue : '',
            focusVehicle: false,
            intervalId : '',
-           parsedData : '',
+           parsedData : undefined,
+
            testData : [{
            title: "Toulouse",
            position: {
-             lat: 52.302389,
-             lng: 21.041596
+             lat: 10,
+             lng: 20
            },
            onLoaded: (googleMaps, map, marker) => {
 
@@ -157,13 +158,16 @@ class MainComponent extends Component{
         const style = {
             height: '100%'
         };
+        console.log("PARSED DATA");
+        console.log(this.state.parsedData);
+    
 
         return(
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
               inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
               focusState = {this.state.focusVehicle} cickedListElement = {(num) => this.handleDeleteItem(num)}
-              getData = {this.getData} mapToShowOnMap = {this.state.busesData} parsedData = {this.state.testData}
+              getData = {this.getData} mapToShowOnMap = {this.state.busesData} parsedData = {this.state.parsedData}
               />
             </div>
         )

@@ -13,7 +13,7 @@ const mapCoordinatesParse = (props) => {
         },
         onLoaded: (googleMaps, map, marker) => {
             const infoWindow = new googleMaps.infoWindow({
-                content:`<div>${item.number}</div>`
+                content:`<div>${item.number}</div>`,
             })
             infoWindow.open(map,marker)
         }

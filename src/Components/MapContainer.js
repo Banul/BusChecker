@@ -19,9 +19,10 @@ const mapContainer = (props) =>
 
     render={googleMaps =>
         googleMaps && (
+            
             <div className = "container">
          <div className = "map" >
-            <ReactGoogleMap 
+                         <ReactGoogleMap 
              googleMaps={googleMaps}  
              coordinates = {props.parsedData}
       
