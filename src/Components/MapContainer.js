@@ -30,6 +30,7 @@ const mapContainer = (props) =>
       zoom={8}
 
       onLoaded={(googleMaps, map) => {
+          
         map.setMapTypeId(googleMaps.MapTypeId.SATELLITE)
       }}
     />
@@ -50,43 +51,10 @@ const mapContainer = (props) =>
             <p></p>
               <button type="button" className="btn btn-success buton col-md-4" onClick = { props.getData }>Dodaj</button> 
              <ValidationComponent inputValue = {props.inputValue} focusState = {props.focusState}/>
-             <Vehicles vehicles = {props.vehicles} itemClicked = {props.cickedListElement}/>
+             <Vehicles vehicles = {props.vehicles} itemClicked = {props.clickedListElement} itemChecked = {props.checked}/>
          </div>
          </div>
         )}
     />
 
 export default mapContainer;
-
-//    coordinates={[
-//         {
-//           title: "Toulouse",
-//           position: {
-//             lat: 52.302389,
-//             lng: 21.041596
-//           },
-//           onLoaded: (googleMaps, map, marker) => {
-
-//                 const infoWindow = new googleMaps.InfoWindow({
-//               content: `
-//                 <div>
-//                   132
-//                 </div>
-//               `,
-//             })
-//             infoWindow.open(map, marker)
-
-//            } 
-//       }, 
-//       {
-//          title: "Toulouse",
-//           position: {
-//             lat: 51.302389,
-//             lng: 21.041596
-//           },
-//            onLoaded: (googleMaps, map, marker) => {
-
-//            }
-//       }
-//       ]
-//     }

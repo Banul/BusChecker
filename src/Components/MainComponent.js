@@ -30,26 +30,8 @@ class MainComponent extends Component{
            focusVehicle: false,
            intervalId : '',
            parsedData : undefined,
+           checkedArray :[]
 
-           testData : [{
-           title: "Toulouse",
-           position: {
-             lat: 10,
-             lng: 20
-           },
-           onLoaded: (googleMaps, map, marker) => {
-
-                 const infoWindow = new googleMaps.InfoWindow({
-               content: `
-                 <div>
-                   132
-                 </div>
-               `,
-             })
-             infoWindow.open(map, marker)
-
-            } 
-        }]
       }
 
       vehicleLocationReturner(props) {
@@ -71,7 +53,7 @@ class MainComponent extends Component{
 
 
         if (this.state.busesData.length !== 0){
-        const parsedData = busDataParser(this.state.busesData);
+        const parsedData = busDataParser(this.state.busesData, this.state.checkedArray);
         
         this.setState({
             parsedData : parsedData
@@ -83,6 +65,24 @@ class MainComponent extends Component{
     }
 
 
+    getCheckedItems = (vehicleNumber) => {
+       const indexValueChecked = this.state.checkedArray.indexOf(vehicleNumber)
+       if (indexValueChecked < 0 ){
+           const newArrayChecked = [...this.state.checkedArray, vehicleNumber]
+           this.setState({
+               checkedArray: newArrayChecked
+           })
+       }
+        else if(indexValueChecked >= 0){
+           let newCheckedArray = this.state.checkedArray;
+           newCheckedArray.splice(indexValueChecked, 1);
+
+           this.setState({
+               checkedArray: newCheckedArray
+           })
+        }
+
+    }
 
     onButtonAddClick = () => {
     
@@ -91,9 +91,7 @@ class MainComponent extends Component{
             if (this.state.currentIntervalId !== ''){
                 clearInterval(this.state.intervalId);
             }
-            const newBuses = [...this.state.buses, this.state.inputValue]
-            console.log("addClicked");
-            console.log(newBuses);
+            const newBuses = [...this.state.buses, this.state.inputValue];
             this.vehicleLocationReturner(newBuses);
             let newIntervalId = setInterval(() => this.vehicleLocationReturner(newBuses), 5000);
 
@@ -141,7 +139,7 @@ class MainComponent extends Component{
                 intervalId: '',
                 parsedData: undefined
             });
-        clearInterval(this.state.intervalId);
+            clearInterval(this.state.intervalId);
 
        
         }
@@ -149,6 +147,8 @@ class MainComponent extends Component{
 
         
     }
+    
+    
 
     // pobierz dane 
     getData = () => {
@@ -171,8 +171,9 @@ class MainComponent extends Component{
             <div style = {style} >
               <MapContainer buttonAddClickHandler = {this.onButtonAddClick} inputHandler = {this.onInputChange}
               inputValue = {this.state.inputValue} vehicles = {this.state.buses} focusVeh = {this.onFocusVeh}
-              focusState = {this.state.focusVehicle} cickedListElement = {(num) => this.handleDeleteItem(num)}
+              focusState = {this.state.focusVehicle} clickedListElement = {(num) => this.handleDeleteItem(num)}
               getData = {this.getData} mapToShowOnMap = {this.state.busesData} parsedData = {this.state.parsedData}
+              checked = {(num) => this.getCheckedItems(num)}
               />
             </div>
         )

@@ -64,8 +64,14 @@
     background-color: #d5ff80;
     color: black;
     cursor: pointer;
+    width: 94%;
+    float:left;
 }
 
 .card:hover{
   background-color: #88cc00;
+}
+
+.checkbox {
+  margin-top: 5px;
 }
