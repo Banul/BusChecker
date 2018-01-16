@@ -1,20 +1,21 @@
-const arrayOfData = new Array();
 
-const mapCoordinatesParse = (props) => props.map (item =>{
-      ({
-        title: item.Lines,
-        position: {
-            lat: item.latitude,
-            lng: item.longitude
-        },
-        onLoaded: (googleMaps, map, marker) => {
-            const infoWindow = new googleMaps.infoWindow({
-                content:`<div>${item.number}</div>`
-            })
-            infoWindow.open(map,marker)
-        }
-      })
+
+const mapCoordinatesParse = (props) => {
+    console.log("propsy kurde");
+    console.log(props)
+    let arrayOfData = new Array();
+
+    props.map (item =>{
+   let parsedItem = {
+        a: "dupa",
+        b: "cos"
+    };
+    
+    console.log("araj");
+    arrayOfData.push(parsedItem);
 })
+    return arrayOfData;
+}
 
 export default mapCoordinatesParse;
 
@@ -50,3 +51,19 @@ export default mapCoordinatesParse;
 //       }
 //       ]
 //     }
+
+
+
+//    ({
+//         title: item.Lines,
+//         position: {
+//             lat: item.latitude,
+//             lng: item.longitude
+//         },
+//         onLoaded: (googleMaps, map, marker) => {
+//             const infoWindow = new googleMaps.infoWindow({
+//                 content:`<div>${item.number}</div>`
+//             })
+//             infoWindow.open(map,marker)
+//         }
+//       })
