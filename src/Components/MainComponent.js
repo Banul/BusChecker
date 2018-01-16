@@ -72,7 +72,6 @@ class MainComponent extends Component{
 
         if (this.state.busesData.length !== 0){
         const parsedData = busDataParser(this.state.busesData);
-         console.log(parsedData)
         
         this.setState({
             parsedData : parsedData
@@ -93,8 +92,10 @@ class MainComponent extends Component{
                 clearInterval(this.state.intervalId);
             }
             const newBuses = [...this.state.buses, this.state.inputValue]
+            console.log("addClicked");
+            console.log(newBuses);
             this.vehicleLocationReturner(newBuses);
-            let newIntervalId = setInterval(() => this.vehicleLocationReturner(this.state.buses), 5000);
+            let newIntervalId = setInterval(() => this.vehicleLocationReturner(newBuses), 5000);
 
             this.setState({
                 buses :  newBuses,
@@ -123,7 +124,7 @@ class MainComponent extends Component{
          if (this.state.currentIntervalId !== ''){
                 clearInterval(this.state.intervalId);
         }
-        console.log("handledelete");
+        console.log("onDeleteHandle");
         console.log(this.state.buses);
         if(this.state.buses.length !== 0){
         let newIntervalId = setInterval(() => this.vehicleLocationReturner(this.state.buses), 5000);
@@ -133,9 +134,15 @@ class MainComponent extends Component{
         }
 
         if (this.state.buses.length === 0){
+
             this.setState({
-                intervalId : ''
-            })
+                buses: [],
+                busesData: [],
+                intervalId: '',
+                parsedData: undefined
+            });
+        clearInterval(this.state.intervalId);
+
        
         }
     
@@ -158,8 +165,6 @@ class MainComponent extends Component{
         const style = {
             height: '100%'
         };
-        console.log("PARSED DATA");
-        console.log(this.state.parsedData);
     
 
         return(

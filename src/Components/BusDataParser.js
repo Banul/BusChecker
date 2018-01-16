@@ -15,8 +15,7 @@ for (let k = 0; k<props.length; k++){
       });
    }
 }
-    console.log("tutut");
-    console.log(arrayOfItems);
+
     return mapCoordinatesParse(arrayOfItems);
    
 }
